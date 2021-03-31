@@ -4,6 +4,7 @@ import type {
   LoaderFunction
 } from "@remix-run/react";
 import { useRouteData } from "@remix-run/react";
+import {someFn} from '../some-loader-util'
 
 import stylesUrl from "../styles/index.css";
 
@@ -19,7 +20,8 @@ export let links: LinksFunction = () => {
 };
 
 export let loader: LoaderFunction = async () => {
-  return { message: "this is awesome 😎" };
+  const result = someFn()
+  return { message: "this is awesome 😎", result };
 };
 
 export default function Index() {

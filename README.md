@@ -1,3 +1,20 @@
+The browser esbuild config doesn't like node-stuff that's only used for server stuff. Here's the output of the build:
+
+```
+Building Remix app in production mode...
+ > node_modules/cache-manager/lib/caching.js:28:21: warning: This call to "require" will not be bundled because the argument is not a string literal (surround with a try/catch to silence this warning)
+    28 │         self.store = require('./stores/' + storeName +...
+       ╵                      ~~~~~~~
+
+ > node_modules/cache-manager/lib/caching.js:28:21: warning: This call to "require" will not be bundled because the argument is not a string literal (surround with a try/catch to silence this warning)
+    28 │         self.store = require('./stores/' + storeName +...
+       ╵                      ~~~~~~~
+
+Built in 98ms
+```
+
+Doesn't matter what the module is. The point is, if it's doing stuff that can't be compiled for a browser build, esbuild isn't happy with it regardless of whether that code will make it to the browser build or not.
+
 # Remix Starter for Express
 
 Welcome to Remix!
